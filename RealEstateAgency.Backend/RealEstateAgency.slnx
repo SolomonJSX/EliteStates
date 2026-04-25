@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="RealEstateAgency.Application/RealEstateAgency.Application.csproj" />
+  <Project Path="RealEstateAgency.Domain/RealEstateAgency.Domain.csproj" />
+  <Project Path="RealEstateAgency.Host/RealEstateAgency.Api.csproj" />
+  <Project Path="RealEstateAgency.Infrastructure/RealEstateAgency.Infrastructure.csproj" />
+</Solution>

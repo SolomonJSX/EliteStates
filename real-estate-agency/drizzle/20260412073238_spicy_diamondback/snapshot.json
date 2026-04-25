@@ -1,0 +1,685 @@
+{
+  "version": "2",
+  "dialect": "mssql",
+  "id": "38f20cc0-d92e-4dbc-834f-7f14bcc4f4e3",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "ddl": [
+    {
+      "name": "agreements",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "cash_desk",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "clients",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "districts",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "employees",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "operations",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "properties",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "name": "property_types",
+      "entityType": "tables",
+      "schema": "dbo"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "date",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "date_created",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "property_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "client_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "employee_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "operation_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "varchar(100)",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "period",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "notes",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "agreements"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "agreement_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "employee_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "client_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "date",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "date",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "decimal(18,2)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "amount",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "cash_desk"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "clients"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "full_name",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "clients"
+    },
+    {
+      "type": "varchar(500)",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "address",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "clients"
+    },
+    {
+      "type": "varchar(20)",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "phone",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "clients"
+    },
+    {
+      "type": "varchar(50)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "client_type",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "clients"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "districts"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "districts"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "employees"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "full_name",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "employees"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "operations"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "operations"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "type_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "district_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "varchar(500)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "address",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "decimal(18,2)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "cost",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "decimal(10,2)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "area",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "description",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "int",
+      "notNull": false,
+      "generated": null,
+      "identity": null,
+      "name": "owner_id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "varchar(50)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "properties"
+    },
+    {
+      "type": "int",
+      "notNull": true,
+      "generated": null,
+      "identity": {
+        "seed": 1,
+        "increment": 1
+      },
+      "name": "id",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "property_types"
+    },
+    {
+      "type": "varchar(255)",
+      "notNull": true,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "schema": "dbo",
+      "entityType": "columns",
+      "table": "property_types"
+    },
+    {
+      "columns": [
+        "property_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "properties",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "agreements_property_id_properties_id_fk",
+      "entityType": "fks",
+      "table": "agreements",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "client_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "clients",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "agreements_client_id_clients_id_fk",
+      "entityType": "fks",
+      "table": "agreements",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "employee_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "employees",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "agreements_employee_id_employees_id_fk",
+      "entityType": "fks",
+      "table": "agreements",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "operation_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "operations",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "agreements_operation_id_operations_id_fk",
+      "entityType": "fks",
+      "table": "agreements",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "agreement_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "agreements",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "cash_desk_agreement_id_agreements_id_fk",
+      "entityType": "fks",
+      "table": "cash_desk",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "employee_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "employees",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "cash_desk_employee_id_employees_id_fk",
+      "entityType": "fks",
+      "table": "cash_desk",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "client_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "clients",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "cash_desk_client_id_clients_id_fk",
+      "entityType": "fks",
+      "table": "cash_desk",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "type_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "property_types",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "properties_type_id_property_types_id_fk",
+      "entityType": "fks",
+      "table": "properties",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "district_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "districts",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "properties_district_id_districts_id_fk",
+      "entityType": "fks",
+      "table": "properties",
+      "schema": "dbo"
+    },
+    {
+      "columns": [
+        "owner_id"
+      ],
+      "nameExplicit": false,
+      "schemaTo": "dbo",
+      "tableTo": "clients",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "properties_owner_id_clients_id_fk",
+      "entityType": "fks",
+      "table": "properties",
+      "schema": "dbo"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "agreements_pkey",
+      "table": "agreements",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "cash_desk_pkey",
+      "table": "cash_desk",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "clients_pkey",
+      "table": "clients",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "districts_pkey",
+      "table": "districts",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "employees_pkey",
+      "table": "employees",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "operations_pkey",
+      "table": "operations",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "properties_pkey",
+      "table": "properties",
+      "schema": "dbo",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "id"
+      ],
+      "name": "property_types_pkey",
+      "table": "property_types",
+      "schema": "dbo",
+      "entityType": "pks"
+    }
+  ],
+  "renames": []
+}
