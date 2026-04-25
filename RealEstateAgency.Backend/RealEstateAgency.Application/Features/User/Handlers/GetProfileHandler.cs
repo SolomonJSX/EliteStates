@@ -24,18 +24,14 @@ public class GetProfileHandler : IRequestHandler<GetProfileQuery, UserProfileDto
 
     public async Task<UserProfileDto> Handle(GetProfileQuery request, CancellationToken cancellationToken)
     {
-        // 1. Берем инфу из Identity
         var (email, avatarUrl, role) = await _identityService.GetUserInfoAsync(request.UserId);
         if (email == null) throw new Exception("User not found");
 
-        // 2. Достаем специфичные данные в зависимости от роли
+        // 2. Если КЛИЕНТ
         if (role == "Client")
         {
-            // Нам нужно найти клиента по UserId. 
-            // В IGenericRepository стоит добавить метод FindByCondition или использовать GetAll и фильтровать (что хуже)
-            // Для простоты сейчас допустим, что мы расширили репозиторий или используем спецификацию
-            var clients = await _clientRepo.GetAllAsync();
-            var client = clients.FirstOrDefault(c => c.UserId == request.UserId);
+            var clients = await _clientRepo.FindAsync(c => c.UserId == request.UserId);
+            var client = clients.FirstOrDefault();
 
             return new UserProfileDto(
                 request.UserId, email, avatarUrl,
@@ -44,7 +40,23 @@ public class GetProfileHandler : IRequestHandler<GetProfileQuery, UserProfileDto
             );
         }
 
-        // Аналогично для Employee...
-        return new UserProfileDto(request.UserId, email, avatarUrl, "Admin", "", null, null, role, null, null, null);
+        // 3. Если СОТРУДНИК или АДМИН (Исправлено здесь!)
+        if (role == "Employee" || role == "Admin")
+        {
+            var employees = await _employeeRepo.FindAsync(e => e.UserId == request.UserId);
+            var employee = employees.FirstOrDefault();
+
+            // Теперь возвращаем реальные данные из таблицы Employees, а не заглушку "Admin"
+            return new UserProfileDto(
+                request.UserId, email, avatarUrl,
+                employee?.FirstName ?? "Сотрудник", 
+                employee?.LastName ?? "", 
+                employee?.MiddleName, 
+                employee?.Phone,
+                role, null, null, null
+            );
+        }
+
+        throw new Exception("Unknown role");
     }
 }

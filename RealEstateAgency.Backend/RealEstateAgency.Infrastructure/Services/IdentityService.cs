@@ -31,4 +31,16 @@ public class IdentityService : IIdentityService
         var result = await _userManager.UpdateAsync(user);
         return result.Succeeded;
     }
+
+    public async Task UpdateUserAsync(string userId, string firstName, string lastName, string phone)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user != null)
+        {
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.PhoneNumber = phone;
+            await _userManager.UpdateAsync(user);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useProfile, useUpdateProfile, useUploadAvatar } from "@/hooks/use-user";
 import { useForm } from "@tanstack/react-form";
 import { zodValidator } from "@tanstack/zod-form-adapter";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Camera, Pencil, X, Check, Loader2 } from "lucide-react";
-import {getImageUrl} from "@/lib/config";
+import { getImageUrl } from "@/lib/config";
 
 // Убедись, что порт совпадает с твоим бэкендом
 const API_BASE_URL = "http://localhost:5012";
@@ -19,9 +19,24 @@ export default function ProfilePage() {
     const { data: profile, isLoading } = useProfile();
     const updateMutation = useUpdateProfile();
     const uploadAvatarMutation = useUploadAvatar();
-    
+
     const [isEditing, setIsEditing] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Добавь useEffect для синхронизации данных профиля с формой
+    useEffect(() => {
+        if (profile) {
+            form.reset({
+                firstName: profile.firstName || "",
+                lastName: profile.lastName || "",
+                middleName: profile.middleName || "",
+                phone: profile.phone || "",
+                city: profile.city || "",
+                street: profile.street || "",
+                house: profile.house || "",
+            });
+        }
+    }, [profile]);
 
     // Инициализация формы TanStack Form
     const form = useForm({
@@ -64,9 +79,9 @@ export default function ProfilePage() {
                         <CardTitle className="text-2xl">Общая информация</CardTitle>
                         <CardDescription>Управление вашими персональными данными и аватаром</CardDescription>
                     </div>
-                    <Button 
-                        variant={isEditing ? "ghost" : "outline"} 
-                        size="sm" 
+                    <Button
+                        variant={isEditing ? "ghost" : "outline"}
+                        size="sm"
                         onClick={() => setIsEditing(!isEditing)}
                     >
                         {isEditing ? <X className="h-4 w-4 mr-2" /> : <Pencil className="h-4 w-4 mr-2" />}
@@ -78,10 +93,10 @@ export default function ProfilePage() {
                         {/* Секция аватара (доступна всегда) */}
                         <div className="flex items-center gap-6">
                             <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
-                                <input 
-                                    type="file" 
-                                    ref={fileInputRef} 
-                                    className="hidden" 
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    className="hidden"
                                     accept="image/*"
                                     onChange={handleFileChange}
                                 />
@@ -105,9 +120,9 @@ export default function ProfilePage() {
                             <div>
                                 <h3 className="text-xl font-bold">{profile?.firstName} {profile?.lastName}</h3>
                                 <p className="text-sm text-muted-foreground">{profile?.role} • {profile?.email}</p>
-                                <Button 
-                                    variant="link" 
-                                    size="sm" 
+                                <Button
+                                    variant="link"
+                                    size="sm"
                                     className="p-0 h-auto mt-1 text-primary"
                                     onClick={() => fileInputRef.current?.click()}
                                     disabled={uploadAvatarMutation.isPending}
@@ -139,8 +154,8 @@ export default function ProfilePage() {
                             </div>
                         ) : (
                             /* РЕЖИМ РЕДАКТИРОВАНИЯ */
-                            <form 
-                                onSubmit={(e) => { e.preventDefault(); e.stopPropagation(); form.handleSubmit(); }} 
+                            <form
+                                onSubmit={(e) => { e.preventDefault(); e.stopPropagation(); form.handleSubmit(); }}
                                 className="space-y-6 pt-6 border-t"
                             >
                                 <FieldGroup>
@@ -149,9 +164,9 @@ export default function ProfilePage() {
                                             {(field) => (
                                                 <Field>
                                                     <FieldLabel>Имя</FieldLabel>
-                                                    <Input 
-                                                        value={field.state.value} 
-                                                        onChange={(e) => field.handleChange(e.target.value)} 
+                                                    <Input
+                                                        value={field.state.value}
+                                                        onChange={(e) => field.handleChange(e.target.value)}
                                                     />
                                                 </Field>
                                             )}
@@ -160,9 +175,9 @@ export default function ProfilePage() {
                                             {(field) => (
                                                 <Field>
                                                     <FieldLabel>Фамилия</FieldLabel>
-                                                    <Input 
-                                                        value={field.state.value} 
-                                                        onChange={(e) => field.handleChange(e.target.value)} 
+                                                    <Input
+                                                        value={field.state.value}
+                                                        onChange={(e) => field.handleChange(e.target.value)}
                                                     />
                                                 </Field>
                                             )}
@@ -173,10 +188,10 @@ export default function ProfilePage() {
                                         {(field) => (
                                             <Field>
                                                 <FieldLabel>Телефон</FieldLabel>
-                                                <Input 
+                                                <Input
                                                     placeholder="+7 (___) ___ __ __"
-                                                    value={field.state.value} 
-                                                    onChange={(e) => field.handleChange(e.target.value)} 
+                                                    value={field.state.value}
+                                                    onChange={(e) => field.handleChange(e.target.value)}
                                                 />
                                             </Field>
                                         )}
@@ -187,9 +202,9 @@ export default function ProfilePage() {
                                             {(field) => (
                                                 <Field>
                                                     <FieldLabel>Город</FieldLabel>
-                                                    <Input 
-                                                        value={field.state.value} 
-                                                        onChange={(e) => field.handleChange(e.target.value)} 
+                                                    <Input
+                                                        value={field.state.value}
+                                                        onChange={(e) => field.handleChange(e.target.value)}
                                                     />
                                                 </Field>
                                             )}
@@ -198,9 +213,9 @@ export default function ProfilePage() {
                                             {(field) => (
                                                 <Field>
                                                     <FieldLabel>Улица</FieldLabel>
-                                                    <Input 
-                                                        value={field.state.value} 
-                                                        onChange={(e) => field.handleChange(e.target.value)} 
+                                                    <Input
+                                                        value={field.state.value}
+                                                        onChange={(e) => field.handleChange(e.target.value)}
                                                     />
                                                 </Field>
                                             )}
@@ -209,9 +224,9 @@ export default function ProfilePage() {
                                             {(field) => (
                                                 <Field>
                                                     <FieldLabel>Дом</FieldLabel>
-                                                    <Input 
-                                                        value={field.state.value} 
-                                                        onChange={(e) => field.handleChange(e.target.value)} 
+                                                    <Input
+                                                        value={field.state.value}
+                                                        onChange={(e) => field.handleChange(e.target.value)}
                                                     />
                                                 </Field>
                                             )}
@@ -219,9 +234,9 @@ export default function ProfilePage() {
                                     </div>
 
                                     <div className="flex justify-end gap-3 pt-4">
-                                        <Button 
-                                            type="button" 
-                                            variant="ghost" 
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
                                             onClick={() => setIsEditing(false)}
                                         >
                                             Отмена
